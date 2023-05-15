@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import CharacterGallery from "./CharacterGallery";
+import axios from "axios/index";
 
 function App() {
 
@@ -1133,7 +1134,7 @@ function App() {
 
   return (
     <div className="App">
-      {<CharacterGallery characters={response}/>}
+      {<CharacterGallery/>}
     </div>
   );
 }
