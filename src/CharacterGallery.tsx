@@ -1,6 +1,8 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import GalleryCard from "./GalleryCard";
 import axios from "axios";
+import UseCharacters from "./useCharacters";
+import useCharacters from "./useCharacters";
 
 type Character = {
     id: number
@@ -11,18 +13,10 @@ type Character = {
 
 function CharacterGallery() {
 
-    const [response, setResponse] = useState<Character[]>([])
+    const {response,getAllCharactersFromApi} = useCharacters()
+
     const [searchTerm, setSearchTerm] = useState<string>("")
     const filteredChars = response.filter((character) => character.name.toLowerCase().includes(searchTerm.toLowerCase()))
-
-    useEffect(getAllCharactersFromApi, [])
-
-    function getAllCharactersFromApi(){
-        axios.get("https://rickandmortyapi.com/api/character")
-            .then((api) => {
-                setResponse(api.data.results);
-            })
-    }
 
     function onChangeInputUser(event: ChangeEvent<HTMLInputElement>){
         setSearchTerm(event.target.value);
