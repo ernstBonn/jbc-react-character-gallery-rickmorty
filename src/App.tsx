@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css';
 import CharacterGallery from "./CharacterGallery";
 import axios from "axios/index";
+import {Route, Routes} from "react-router-dom";
+import DetailCard from "./DetailCard";
 
 function App() {
 
@@ -1134,7 +1136,10 @@ function App() {
 
   return (
     <div className="App">
-      {<CharacterGallery/>}
+      <Routes>
+        <Route path={"/"} element={<CharacterGallery/>}/>
+        <Route path={"/character/:id"} element={<DetailCard/>}/>
+      </Routes>
     </div>
   );
 }

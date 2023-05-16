@@ -15,15 +15,14 @@ function CharacterGallery() {
     const [searchTerm, setSearchTerm] = useState<string>("")
     const filteredChars = response.filter((character) => character.name.toLowerCase().includes(searchTerm.toLowerCase()))
 
+    useEffect(getAllCharactersFromApi, [])
+
     function getAllCharactersFromApi(){
         axios.get("https://rickandmortyapi.com/api/character")
             .then((api) => {
                 setResponse(api.data.results);
             })
     }
-
-    // useEffect(getAllCharactersFromApi, [])
-
 
     function onChangeInputUser(event: ChangeEvent<HTMLInputElement>){
         setSearchTerm(event.target.value);
@@ -32,10 +31,8 @@ function CharacterGallery() {
     return (
         <>
             <input placeholder={"search..."} onChange={onChangeInputUser}/>
-            <button onClick={getAllCharactersFromApi}>get chars</button>
         <div>
             {filteredChars
-
                 .map(thisCharacter => <GalleryCard key={thisCharacter.id} character={thisCharacter}/>)}
         </div>
         </>

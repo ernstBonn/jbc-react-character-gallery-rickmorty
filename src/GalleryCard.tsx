@@ -14,7 +14,7 @@ function GalleryCard(props: Props) {
     return (
         <div>
             <h1>{props.character.name}</h1>
-            <img src={props.character.image} alt={props.character.name}/>
+            <a href={"character/" + props.character.id.toString()}><img src={props.character.image} alt={props.character.name}/></a>
             <p>{props.character.id}</p>
         </div>
     );
